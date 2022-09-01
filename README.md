@@ -55,7 +55,7 @@
 | port| health check port value in the form of a number |   `number` | `80` | yes |
 | healthy_threshold | healthy threshold value in the form of a number | `number` | `2` | yes |
 | unhealthy_threshold | unhealthy threshold value in the form of a number | `number`|  `2` | yes |
-| interval |health check interval value in the form ofa number  | `number` | `10` | yes |
+| interval |health check interval value in the form of a number  | `number` | `10` | yes |
 | matcher | health check matcher value in the form of a string  | `string` | `n/a`| no |
 |load_balancer_type | load balancer type in the form of a string | `string` | `"network"` | yes |
 |internal |  is internal or not in the form of a bool | `bool` | `true` |  yes |

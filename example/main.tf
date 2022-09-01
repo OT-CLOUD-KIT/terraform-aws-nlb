@@ -1,6 +1,6 @@
 module "nlb-internal" {
-  source                   = "./nlb-module"
-  count                  = var.enable_nlb_resource == true ? 1 : 0
+  source                   = "git::https://github.com/OT-CLOUD-KIT/terraform-aws-nlb.git"
+  count                    = var.enable_nlb_resource == true ? 1 : 0
   nlb_name                 = var.nlb_name 
   subnets                  = var.subnets
   subnet_mapping           = var.subnet_mapping
@@ -22,6 +22,7 @@ module "nlb-internal" {
   target_group_port        = var.target_group_port
   tg_attachement_port      = var.tg_attachement_port
   tags                     = var.tags
-}
+}           
+
 
 

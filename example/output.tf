@@ -5,7 +5,7 @@ output "target_group_arn" {
 
 output "target_id" {
   description = "target ids"
-  value       = var.target_group_instance_id
+  value       = aws_lb_target_group_attachment.tg_attachement.target_id
 }
 
 output "load_balancer_arn" {

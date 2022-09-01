@@ -29,12 +29,10 @@ resource "aws_lb" "nlb-internal" {
   tags = merge(
     {
       PROVISIONER = var.PROVISIONER,
-
     },
     var.tags,
   )
 }
-
 
 resource "aws_lb_listener" "listener" {
   load_balancer_arn = aws_lb.nlb-internal.arn
