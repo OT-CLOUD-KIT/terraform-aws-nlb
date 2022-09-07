@@ -4,41 +4,24 @@ variable "nlb_name" {
   default     = "nlb1"
 }
 
-variable "listener_port" {
-  type        = number
-  description = "Port on which LB is listening"
-  default     = 42069
+variable "listener_ports" {
+  type    = map(number)
+  default = {
+    http  = 80
+    https = 443
+  }
 }
 
 variable "subnets" {
   type        = list(string)
   description = "A list of subnet ids"
-  default     = ["subnet-0db4a62944bf13925", "subnet-0c7d3d413b1af1bd6"]
-}
-
-variable "subnet_mapping" {
-  type = list(object({
-    subnet_id     = string
-    allocation_id = string
-  }))
-  description = "List of objects describing mapping subnets to their allocation IDs"
-  default     = []
-}
-
-variable "target_groups" {
-  type = map(object({
-    name   = string
-    port   = number
-    vpc_id = string
-  }))
-  description = "Map of target groups to create"
-  default     = {}
+  default      = ["subnet-0e6b22e248549b83e", "subnet-0532fa65231ed74a4"]
 }
 
 variable "target_group_instance_id" {
-  type        = string
+  type        = set(string)
   description = "target group instance id"
-  default     = "i-08f4ec5db7c523cc6"
+  default     = ["i-0dfacbedc80c4fa1a", "i-0707c2bb02b28434c"]
 }
 
 variable "tcp_protocol" {
@@ -47,7 +30,7 @@ variable "tcp_protocol" {
   default     = "TCP"
   validation {
     condition     = contains(["TCP", "UDP", "TLS"], var.tcp_protocol)
-    error_message = "Valid values are \"tcp\",\"UDP\",\"TLS\"."
+    error_message = "Valid values are \"TCP\",\"UDP\",\"TLS\"."
   }
 }
 
@@ -91,6 +74,10 @@ variable "load_balancer_type" {
   type        = string
   description = "load balancer type"
   default     = "network"
+   validation {
+    condition     = contains(["network"], var.load_balancer_type)
+    error_message = "Valid values are \"network\"."
+  }
 }
 
 variable "internal" {
@@ -120,7 +107,7 @@ variable "target_group_port" {
 variable "vpc_id" {
   type        = string
   description = "vpc id"
-  default     = "vpc-0ee0ed5cef71f7fb2"
+  default = "vpc-0c638c6ab0e9479ca"
 }
 
 variable "tg_attachement_port" {
@@ -140,3 +127,5 @@ variable "PROVISIONER" {
   description = "PROVISIONER type value in form of a string"
   default     = "terraform"
 }
+
+

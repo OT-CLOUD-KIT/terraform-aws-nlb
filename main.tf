@@ -1,7 +1,8 @@
 resource "aws_lb_target_group_attachment" "tg_attachement" {
+  for_each = var.target_group_instance_id
   target_group_arn = aws_lb_target_group.tg_ip.arn
-  target_id        = var.target_group_instance_id
-  port             = var.tg_attachement_port
+  target_id        = each.value
+  port              = var.tg_attachement_port
 }
 
 resource "aws_lb_target_group" "tg_ip" {
@@ -34,13 +35,27 @@ resource "aws_lb" "nlb-internal" {
   )
 }
 
-resource "aws_lb_listener" "listener" {
+# resource "aws_lb_listener" "listener" {
+#   load_balancer_arn = aws_lb.nlb-internal.arn
+#   port              = var.listener_port
+#   protocol          = var.tcp_protocol
+
+#   default_action {
+#     target_group_arn = aws_lb_target_group.tg_ip.arn
+#     type             = var.default_action_type
+#   }
+# }
+
+
+
+resource "aws_lb_listener" "this" {
+  for_each = var.listener_ports
   load_balancer_arn = aws_lb.nlb-internal.arn
-  port              = var.listener_port
   protocol          = var.tcp_protocol
+  port              = each.value
 
   default_action {
-    target_group_arn = aws_lb_target_group.tg_ip.arn
     type             = var.default_action_type
+    target_group_arn = aws_lb_target_group.tg_ip.arn
   }
 }

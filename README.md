@@ -46,10 +46,10 @@
 | nlb_name  | Name used for the NLB resource | `string` | `"nlb1` | yes |
 | subnets| A list of subnet ids | `list(string)` | `[]` | yes |
 | subnet_mapping| List of objects describing mapping subnets to their allocation IDs | `map(list(string))` | `[]` <br>| no ||
-| listener_port | Port on which LB is listening in the form of a number | `number` | `42069` | yes |
-| vpc_id | VPC ID | `string` | `"vpc-0ee0ed5cef71f7fb2"` | yes |
+| listener_ports | Port on which nlb is listening in the form of a number | `map(number)` | `80, 443` | yes |
+| vpc_id | VPC ID | `string` | `""` | yes |
 | target_groups| Map of target groups to create in the form of a string | `map(object({}))` |`{}`| no |
-| target_group_instance_id | target group instance id in the form of a string  | `string` | `"i-08f4ec5db7c523cc6"` | yes |
+| target_group_instance_id | target group instance id in the form of a string  | `set(string)` | `n/a` | yes |
 | tcp_protocol | tcp protocoal | `list(string)` | `"TCP"` | yes |
 | target_type| target type | `string` | `"instance"` | yes |
 | port| health check port value in the form of a number |   `number` | `80` | yes |
@@ -72,8 +72,7 @@ These defined outputs that can be used within the same service and terraform rel
 | Name | Description |
 |------|-------------|
 | target_group_arn | The ARN associated with the target group on the NLB|
-| target_id | target ids attached with the target group on the NLB |
-|load_balancer_arn | The ARN associated on the NLB |
+| load_balancer_arn | The ARN associated on the NLB |
 
 ## Contributors
 

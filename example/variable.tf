@@ -13,9 +13,8 @@ variable "subnets" {
   description = "subnet id"
 }
 
-variable "listener_port" {
-  type = string
-  description = "listener port"
+variable "listener_ports" {
+  type    = map(number)
 }
 
 variable "vpc_id" {
@@ -24,17 +23,8 @@ variable "vpc_id" {
 }
 
 variable "target_group_instance_id" {
-  type = string
+  type = set(string)
   description = "target group instance id"  
-}
-
-variable "target_groups" {
-  type = map(object({
-    name     = string
-    port     = number
-    vpc_id   = string
-  }))
-  description = "Map of target groups to create"
 }
 
 variable "tcp_protocol" {
@@ -105,23 +95,6 @@ variable "vpc_id" {
 variable "tg_attachement_port" {
   type  = number
   description = "tg attachement port" 
-}
-
-variable "target_groups" {
-  type       = map(object({
-    name     = string
-    port     = number
-    vpc_id   = string
-  }))
-  description = "Map of target groups to create"
-}
-
-variable "subnet_mapping" {
-  type    = list(object({
-     subnet_id     = string
-     allocation_id = string
-  }))
-  description = "List of objects describing mapping subnets to their allocation IDs"
 }
 
 variable "tags" {
