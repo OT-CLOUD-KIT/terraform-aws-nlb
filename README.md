@@ -45,18 +45,17 @@
 |------|-------------|:----:|:-----:|:-----:|
 | nlb_name  | Name used for the NLB resource | `string` | `"nlb1` | yes |
 | subnets| A list of subnet ids | `list(string)` | `[]` | yes |
-| subnet_mapping| List of objects describing mapping subnets to their allocation IDs | `map(list(string))` | `[]` <br>| no ||
 | listener_ports | Port on which nlb is listening in the form of a number | `map(number)` | `80, 443` | yes |
 | vpc_id | VPC ID | `string` | `""` | yes |
 | target_groups| Map of target groups to create in the form of a string | `map(object({}))` |`{}`| no |
-| target_group_instance_id | target group instance id in the form of a string  | `set(string)` | `n/a` | yes |
+| target_group_instance_id | target group instance id in the form of a string  | `set(string)` | `[]` | yes |
 | tcp_protocol | tcp protocoal | `list(string)` | `"TCP"` | yes |
 | target_type| target type | `string` | `"instance"` | yes |
 | port| health check port value in the form of a number |   `number` | `80` | yes |
 | healthy_threshold | healthy threshold value in the form of a number | `number` | `2` | yes |
 | unhealthy_threshold | unhealthy threshold value in the form of a number | `number`|  `2` | yes |
 | interval |health check interval value in the form of a number  | `number` | `10` | yes |
-| matcher | health check matcher value in the form of a string  | `string` | `n/a`| no |
+| matcher | health check matcher value in the form of a string  | `string` | `""`| no |
 |load_balancer_type | load balancer type in the form of a string | `string` | `"network"` | yes |
 |internal |  is internal or not in the form of a bool | `bool` | `true` |  yes |
 |default_action_type| default action type in the form of a string |`string` | `"forward"` |  yes |
