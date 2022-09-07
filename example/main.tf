@@ -1,9 +1,9 @@
 module "nlb-internal" {
   source                   = "git::https://github.com/OT-CLOUD-KIT/terraform-aws-nlb.git"
   count                    = var.enable_nlb_resource == true ? 1 : 0
-  nlb_name                 = var.nlb_name 
+  nlb_name                 = var.nlb_name
   subnets                  = var.subnets
-  listener_port            = var.listener_port
+  listener_ports           = var.listener_ports
   vpc_id                   = var.vpc_id
   target_group_instance_id = var.target_group_instance_id
   tcp_protocol             = var.tcp_protocol
@@ -15,12 +15,12 @@ module "nlb-internal" {
   matcher                  = var.matcher
   load_balancer_type       = var.load_balancer_type
   internal                 = var.internal
-  default_action_type      = var.default_action_type 
+  default_action_type      = var.default_action_type
   target_group_name        = var.target_group_name
   target_group_port        = var.target_group_port
   tg_attachement_port      = var.tg_attachement_port
   tags                     = var.tags
-}           
+}
 
 
 

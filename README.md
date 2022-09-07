@@ -17,7 +17,7 @@ module "nlb-internal" {
   count                    = var.enable_nlb_resource == true ? 1 : 0
   nlb_name                 = var.nlb_name 
   subnets                  = var.subnets
-  listener_port            = var.listener_port
+  listener_ports           = var.listener_ports
   vpc_id                   = var.vpc_id
   target_group_instance_id = var.target_group_instance_id
   tcp_protocol             = var.tcp_protocol

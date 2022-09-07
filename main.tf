@@ -35,19 +35,6 @@ resource "aws_lb" "nlb-internal" {
   )
 }
 
-# resource "aws_lb_listener" "listener" {
-#   load_balancer_arn = aws_lb.nlb-internal.arn
-#   port              = var.listener_port
-#   protocol          = var.tcp_protocol
-
-#   default_action {
-#     target_group_arn = aws_lb_target_group.tg_ip.arn
-#     type             = var.default_action_type
-#   }
-# }
-
-
-
 resource "aws_lb_listener" "this" {
   for_each = var.listener_ports
   load_balancer_arn = aws_lb.nlb-internal.arn
