@@ -45,6 +45,7 @@ module "nlb-internal" {
 | subnets| A list of subnet ids | `list(string)` | `[]` | yes |
 | listener_ports | Port on which nlb is listening in the form of a number | `map(number)` | `80, 443` | yes |
 | vpc_id | VPC ID | `string` | `""` | yes |
+| target_groups| Map of target groups to create in the form of a string | `map(object({}))` |`{}`| no |
 | target_group_instance_id | target group instance id in the form of a string  | `set(string)` | `[]` | yes |
 | tcp_protocol | tcp protocoal | `list(string)` | `"TCP"` | yes |
 | target_type| target type | `string` | `"instance"` | yes |

@@ -5,7 +5,7 @@ variable "nlb_name" {
 }
 
 variable "listener_ports" {
-  type    = map(number)
+  type = map(number)
   default = {
     http  = 80
     https = 443
@@ -15,13 +15,11 @@ variable "listener_ports" {
 variable "subnets" {
   type        = list(string)
   description = "A list of subnet ids"
-  default      = ["subnet-0e6b22e248549b83e", "subnet-0532fa65231ed74a4"]
 }
 
 variable "target_group_instance_id" {
   type        = set(string)
   description = "target group instance id"
-  default     = ["i-0dfacbedc80c4fa1a", "i-0707c2bb02b28434c"]
 }
 
 variable "tcp_protocol" {
@@ -74,7 +72,7 @@ variable "load_balancer_type" {
   type        = string
   description = "load balancer type"
   default     = "network"
-   validation {
+  validation {
     condition     = contains(["network"], var.load_balancer_type)
     error_message = "Valid values are \"network\"."
   }
@@ -107,7 +105,6 @@ variable "target_group_port" {
 variable "vpc_id" {
   type        = string
   description = "vpc id"
-  default = "vpc-0c638c6ab0e9479ca"
 }
 
 variable "tg_attachement_port" {
